@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:opacity="opaque">
   <item android:drawable="@color/colorPrimary" />
@@ -8,8 +7,13 @@
       android:left="100dp"
       android:right="100dp"
       android:top="100dp">
-    <bitmap
+    <!-- <bitmap
         android:gravity="center"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher" /> -->
+    <shape
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+      <solid android:color="@color/colorAccent" />
+    </shape>
   </item>
 </layer-list>

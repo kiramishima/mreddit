@@ -23,16 +23,17 @@ import net.kiramishima.app.mreddit.screens.SubredditsScreen
 import net.kiramishima.app.mreddit.theme.MRedditTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import net.kiramishima.app.mreddit.viewmodel.MainViewModel
 
 @Composable
-fun MRedditApp() {
+fun MRedditApp(viewModel: MainViewModel) {
   MRedditTheme {
-    AppContent()
+    AppContent(viewModel)
   }
 }
 
 @Composable
-private fun AppContent() {
+private fun AppContent(viewModel: MainViewModel) {
   val scaffoldState: ScaffoldState = rememberScaffoldState()
   val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
@@ -52,7 +53,8 @@ private fun AppContent() {
       content = {
         MainScreenContainer(
           modifier = Modifier.padding(bottom = 56.dp),
-          screenState = screenState
+          screenState = screenState,
+          viewModel = viewModel
         )
       }
     )
@@ -102,16 +104,20 @@ fun TopAppBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope) {
 }
 
 @Composable
-private fun MainScreenContainer(modifier: Modifier = Modifier, screenState: MutableState<Screen>) {
+private fun MainScreenContainer(
+  modifier: Modifier = Modifier,
+  screenState: MutableState<Screen>,
+  viewModel: MainViewModel
+) {
   Surface(
     modifier = modifier,
     color = MaterialTheme.colors.background
   ) {
     when (screenState.value) {
-      Screen.Home -> HomeScreen()
+      Screen.Home -> HomeScreen(viewModel)
       Screen.Subscriptions -> SubredditsScreen()
       Screen.NewPost -> AddScreen()
-      Screen.MyProfile -> MyProfileScreen()
+      Screen.MyProfile -> MyProfileScreen(viewModel)
     }
   }
 }

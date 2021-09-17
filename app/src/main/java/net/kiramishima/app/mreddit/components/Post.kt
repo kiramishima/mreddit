@@ -1,6 +1,5 @@
 package net.kiramishima.app.mreddit.components
 
-import android.widget.Space
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -71,8 +70,14 @@ fun Post(
 }
 
 @Composable
-fun Header(post: PostModel, onJoinButtonClick: (Boolean) -> Unit = {}) {
-  Row(modifier = Modifier.padding(start = 16.dp), verticalAlignment = Alignment.CenterVertically) {
+fun Header(
+  post: PostModel,
+  onJoinButtonClick: (Boolean) -> Unit = {}
+) {
+  Row(
+    modifier = Modifier.padding(start = 16.dp),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
     Image(
       ImageBitmap.imageResource(id = R.drawable.subreddit_placeholder),
       contentDescription = stringResource(id = R.string.subreddits),
@@ -83,12 +88,19 @@ fun Header(post: PostModel, onJoinButtonClick: (Boolean) -> Unit = {}) {
     Spacer(modifier = Modifier.width(8.dp))
     Column(modifier = Modifier.weight(1f)) {
       Text(
-        text = stringResource(id = R.string.subreddit_header, post.subreddit),
+        text = stringResource(
+          R.string.subreddit_header,
+          post.subreddit
+        ),
         fontWeight = FontWeight.Medium,
         color = MaterialTheme.colors.primaryVariant
       )
       Text(
-        text = stringResource(id = R.string.post_header, post.username, post.postedTime),
+        text = stringResource(
+          R.string.post_header,
+          post.username,
+          post.postedTime
+        ),
         color = Color.Gray
       )
     }
@@ -96,7 +108,7 @@ fun Header(post: PostModel, onJoinButtonClick: (Boolean) -> Unit = {}) {
     JoinButton(onJoinButtonClick)
     MoreActionsMenu()
   }
-  
+
   Title(text = post.title)
 }
 
@@ -115,7 +127,7 @@ fun MoreActionsMenu() {
 
     DropdownMenu(
       expanded = expanded,
-      onDismissRequest = { expanded = false }
+      onDismissRequest = { expanded = false },
     ) {
       CustomDropdownMenuItem(
         vectorResourceId = R.drawable.ic_baseline_bookmark_24,
@@ -226,7 +238,7 @@ fun VotingAction(
       fontWeight = FontWeight.Medium,
       fontSize = 12.sp
     )
-    ArrowButton(onDownVoteAction, arrowResourceId = R.drawable.ic_baseline_arrow_downward_24)
+    ArrowButton(onDownVoteAction, R.drawable.ic_baseline_arrow_downward_24)
   }
 }
 
@@ -234,7 +246,7 @@ fun VotingAction(
 fun ArrowButton(onClickAction: () -> Unit, arrowResourceId: Int) {
   IconButton(onClick = onClickAction, modifier = Modifier.size(30.dp)) {
     Icon(
-      imageVector = ImageVector.vectorResource(id = arrowResourceId),
+      imageVector = ImageVector.vectorResource(arrowResourceId),
       contentDescription = stringResource(id = R.string.upvote),
       modifier = Modifier.size(20.dp),
       tint = Color.Gray
@@ -264,8 +276,12 @@ fun PostAction(
 
 @Preview
 @Composable
-fun ArrowButtonPreview() {
-  ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
+fun PostActionPreview() {
+  PostAction(
+    vectorResourceId = R.drawable.ic_baseline_emoji_events_24,
+    text = stringResource(R.string.award),
+    onClickAction = {}
+  )
 }
 
 @Preview
@@ -274,6 +290,12 @@ fun HeaderPreview() {
   Column {
     Header(DEFAULT_POST)
   }
+}
+
+@Preview
+@Composable
+fun ArrowButtonPreview() {
+  ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
 }
 
 @Preview

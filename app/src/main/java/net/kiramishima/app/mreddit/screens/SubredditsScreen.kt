@@ -111,25 +111,26 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
             .fillMaxSize()
             .background(color = MaterialTheme.colors.surface)
     ) {
-        val (backgroundImage, icon, name, members, description) = createRefs() // 1
+        val (backgroundImage, icon, name, members, description) = createRefs()
 
-        SubredditImage( // 2
+        SubredditImage(
             modifier = modifier.constrainAs(backgroundImage) {
                 centerHorizontallyTo(parent)
                 top.linkTo(parent.top)
             }
         )
 
-        SubredditIcon( // 3
-            modifier = modifier.constrainAs(icon) {
-                top.linkTo(backgroundImage.bottom)
-                bottom.linkTo(backgroundImage.bottom)
-                centerHorizontallyTo(parent)
-            }
+        SubredditIcon(
+            modifier = modifier
+                .constrainAs(icon) {
+                    top.linkTo(backgroundImage.bottom)
+                    bottom.linkTo(backgroundImage.bottom)
+                    centerHorizontallyTo(parent)
+                }
                 .zIndex(1f)
         )
 
-        SubredditName( // 4
+        SubredditName(
             nameStringRes = subredditModel.nameStringRes,
             modifier = modifier.constrainAs(name) {
                 top.linkTo(icon.bottom)
@@ -137,7 +138,7 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
             }
         )
 
-        SubredditMembers( // 5
+        SubredditMembers(
             membersStringRes = subredditModel.membersStringRes,
             modifier = modifier.constrainAs(members) {
                 top.linkTo(name.bottom)
@@ -145,7 +146,7 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
             }
         )
 
-        SubredditDescription( // 6
+        SubredditDescription(
             descriptionStringRes = subredditModel.descriptionStringRes,
             modifier = modifier.constrainAs(description) {
                 top.linkTo(members.bottom)

@@ -22,9 +22,10 @@ import net.kiramishima.app.mreddit.R
 fun JoinedToast(visible: Boolean) {
     AnimatedVisibility(
         visible = visible,
-        enter = slideInVertically(initialOffsetY = { +40 }) + fadeIn(),
+        enter = slideInVertically(initialOffsetY = { +40 }) +
+                fadeIn(),
         exit = slideOutVertically() + fadeOut()
-    ) {
+    ){
         ToastContent()
     }
 }
@@ -32,7 +33,6 @@ fun JoinedToast(visible: Boolean) {
 @Composable
 private fun ToastContent() {
     val shape = RoundedCornerShape(4.dp)
-    
     Box(
         modifier = Modifier
             .clip(shape)
@@ -44,11 +44,13 @@ private fun ToastContent() {
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_planet), 
-                contentDescription = "Subreddit Icon" 
+                painter = painterResource(
+                    id = R.drawable.ic_planet
+                ),
+                contentDescription = "Subreddit Icon"
             )
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "You hace joined this community!")
+            Text(text = "You have joined this community!")
         }
     }
 }

@@ -9,7 +9,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 
-@SuppressLint("ConflictingOnColor")
 private val LightThemeColors = lightColors(
     primary = RwPrimary,
     primaryVariant = RwPrimaryDark,
@@ -20,7 +19,6 @@ private val LightThemeColors = lightColors(
     error = Red800
 )
 
-@SuppressLint("ConflictingOnColor")
 private val DarkThemeColors = darkColors(
     primary = RwPrimaryDark,
     primaryVariant = RwPrimary,
@@ -34,13 +32,13 @@ private val DarkThemeColors = darkColors(
 fun MRedditTheme(
     content: @Composable () -> Unit
 ) {
-  MaterialTheme(
-      colors = if (MRedditThemeSettings.isInDarkTheme.value) DarkThemeColors else LightThemeColors,
-      content = content
-  )
+    MaterialTheme(
+        colors = if (MRedditThemeSettings.isInDarkTheme.value) DarkThemeColors else LightThemeColors,
+        content = content
+    )
 }
 
 
 object MRedditThemeSettings {
-  var isInDarkTheme: MutableState<Boolean> = mutableStateOf(false)
+    var isInDarkTheme: MutableState<Boolean> = mutableStateOf(false)
 }

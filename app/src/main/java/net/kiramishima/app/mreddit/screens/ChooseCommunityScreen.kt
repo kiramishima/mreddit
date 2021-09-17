@@ -1,7 +1,10 @@
 package net.kiramishima.app.mreddit.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -15,16 +18,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.kiramishima.app.mreddit.R
+import net.kiramishima.app.mreddit.routing.BackButtonAction
 import net.kiramishima.app.mreddit.routing.MRedditRouter
 import net.kiramishima.app.mreddit.viewmodel.MainViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import net.kiramishima.app.mreddit.routing.BackButtonAction
 
 private const val SEARCH_DELAY_MILLIS = 300L
 
-private val defaultCommunities = listOf("programming4food", "androiddev", "puppies")
+private val defaultCommunities = listOf("raywenderlich", "androiddev", "puppies")
 
 @Composable
 fun ChooseCommunityScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
@@ -53,7 +56,7 @@ fun ChooseCommunityScreen(viewModel: MainViewModel, modifier: Modifier = Modifie
       leadingIcon = {
         Icon(Icons.Default.Search, contentDescription = stringResource(id = R.string.search))
       },
-      label = { Text(stringResource(id = R.string.search)) },
+      label = { Text(stringResource(R.string.search)) },
       modifier = modifier
         .fillMaxWidth()
         .padding(horizontal = 8.dp),
@@ -65,9 +68,10 @@ fun ChooseCommunityScreen(viewModel: MainViewModel, modifier: Modifier = Modifie
       )
     )
     SearchedCommunities(communities, viewModel, modifier)
-    BackButtonAction {
-      MRedditRouter.goBack()
-    }
+  }
+
+  BackButtonAction {
+    MRedditRouter.goBack()
   }
 }
 

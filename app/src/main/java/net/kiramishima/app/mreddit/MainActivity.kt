@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.ExperimentalAnimationApi
 import net.kiramishima.app.mreddit.viewmodel.MainViewModel
 import net.kiramishima.app.mreddit.viewmodel.MainViewModelFactory
 
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         )
     })
 
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

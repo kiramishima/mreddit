@@ -2,6 +2,7 @@ package net.kiramishima.app.mreddit
 
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -22,6 +23,7 @@ import kotlinx.coroutines.launch
 import net.kiramishima.app.mreddit.screens.*
 import net.kiramishima.app.mreddit.viewmodel.MainViewModel
 
+@ExperimentalAnimationApi
 @Composable
 fun MRedditApp(viewModel: MainViewModel) {
   MRedditTheme {
@@ -29,6 +31,7 @@ fun MRedditApp(viewModel: MainViewModel) {
   }
 }
 
+@ExperimentalAnimationApi
 @Composable
 private fun AppContent(viewModel: MainViewModel) {
   val scaffoldState: ScaffoldState = rememberScaffoldState()
@@ -100,6 +103,7 @@ fun TopAppBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope) {
   )
 }
 
+@ExperimentalAnimationApi
 @Composable
 private fun MainScreenContainer(
   modifier: Modifier = Modifier,
